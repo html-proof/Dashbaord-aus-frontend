@@ -1,0 +1,103 @@
+@import "tailwindcss";
+@import "react-grid-layout/css/styles.css";
+@import "react-resizable/css/styles.css";
+
+:root {
+  --background: #f6f7f9;
+  --surface: #ffffff;
+  --surface-2: #f1f3f6;
+  --border: #e3e6eb;
+  --foreground: #14171c;
+  --muted: #667085;
+  --accent: #4f46e5;
+  --accent-fg: #ffffff;
+  --positive: #0f9d58;
+  --negative: #d93025;
+  --warning: #b26b00;
+
+  /* Chart palette (categorical) */
+  --chart-1: #4f46e5;
+  --chart-2: #0ea5a4;
+  --chart-3: #f59e0b;
+  --chart-4: #ec4899;
+  --chart-5: #22c55e;
+  --chart-6: #8b5cf6;
+  --chart-7: #64748b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0b1020;
+    --surface: #111830;
+    --surface-2: #19223d;
+    --border: #232d4b;
+    --foreground: #e8ecf6;
+    --muted: #93a0bd;
+    --accent: #818cf8;
+    --accent-fg: #0d0f13;
+    --positive: #34d399;
+    --negative: #f87171;
+    --warning: #fbbf24;
+
+    --chart-1: #818cf8;
+    --chart-2: #2dd4bf;
+    --chart-3: #fbbf24;
+    --chart-4: #f472b6;
+    --chart-5: #4ade80;
+    --chart-6: #a78bfa;
+    --chart-7: #94a3b8;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
+  --color-warning: var(--warning);
+  --font-sans: var(--app-font, var(--font-geist-sans));
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  /* Personal text style from Customise > Theme (see AppearanceApplier). */
+  font-weight: var(--app-weight, 400);
+  font-style: var(--app-style, normal);
+}
+
+/* Builder: grid placeholder + resize handle follow the theme */
+.react-grid-item.react-grid-placeholder {
+  background: var(--accent);
+  opacity: 0.15;
+  border-radius: 12px;
+}
+.react-grid-item > .react-resizable-handle::after {
+  border-color: var(--muted);
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-surface px-3 py-2 text-sm font-medium transition hover:bg-surface-2 disabled:opacity-50;
+  }
+  /* use together with .btn */
+  .btn-primary {
+    @apply border-transparent bg-accent text-accent-fg hover:bg-accent hover:opacity-90;
+  }
+  .input {
+    @apply w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm outline-none focus:border-accent;
+  }
+  .card {
+    @apply rounded-xl border border-border bg-surface;
+  }
+  .label {
+    @apply mb-1 block text-xs font-medium text-muted;
+  }
+}
